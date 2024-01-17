@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Estilos-clima.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>App Clima</title>
+</head>
+<body>
+    
+
+    <div class="card">
+        <div class="search">
+            <input type="text" placeholder="Ciudad" spellcheck="false">
+            <button>
+                <img src="https://cdn.icon-icons.com/icons2/2469/PNG/512/magnifier_magnifying_glass_icon_149435.png" alt="lupa">
+            </button>
+        </div>
+        <div class="error">
+            <p>Ciudad Invalida</p>
+        </div>
+        <div class="weather">
+            <img src="https://cdn-icons-png.flaticon.com/512/2551/2551210.png" alt="lluvia" class="weather-icon">
+            <h1 class="temp">22°C</h1>
+            <h2 class="city">New York</h2>
+            <div class="details">
+                <div class="col">
+                    <img src="https://img.freepik.com/iconos-gratis/humedad_318-409854.jpg" alt="">
+                    <div>
+                        <p class="humidity">50%</p>
+                        <p>Humedad</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="https://cdn-icons-png.flaticon.com/512/5024/5024298.png" alt="">
+                    <div>
+                        <p class="wind">20 km/h</p>
+                        <p>Viento</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const apikey = "345c754c9b17b09451d64926284bae76";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+        const searchBox = document.querySelector(".search input");
+        const searchBtn = document.querySelector(".search button");
+        const weatherIcon = document.querySelector(".weather-icon");
+    
+        async function checkweather(city) {
+            const response = await fetch(`${apiUrl}${city}&appid=${apikey}`);
+
+            if (response.status == 404) {
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".weather").style.display = "none";
+            }
+            else {
+                const data = await response.json();
+
+            document.querySelector(".city").innerHTML=data.name;
+            document.querySelector(".temp").innerHTML= Math.round(data.main.temp) + "°C";
+            document.querySelector(".humidity").innerHTML=data.main.humidity + "%";
+            document.querySelector(".wind").innerHTML=data.wind.speed + "km/h";
+
+            if (data.weather[0].main=="Clouds") {
+
+                weatherIcon.src ="https://static.thenounproject.com/png/141491-200.png";    
+            }
+            else if (data.weather[0].main=="Clear") {
+                weatherIcon.src = "https://cdn-icons-png.flaticon.com/512/129/129023.png"  
+            }
+            else if (data.weather[0].main=="Rain") {
+                weatherIcon.src = "https://cdn-icons-png.flaticon.com/512/2551/2551210.png"  
+            }
+            else if (data.weather[0].main=="Drizzle") {
+                weatherIcon.src = "https://w7.pngwing.com/pngs/248/90/png-transparent-cloud-cloudy-forecast-rain-sun-weather-weathercon-weather-forecast-collection-icon.png"  
+            }
+            else if (data.weather[0].main=="Mist") {
+                weatherIcon.src = "https://cdn-icons-png.flaticon.com/512/5903/5903552.png"  
+            }
+
+            document.querySelector(".weather").style.display = "block"
+            document.querySelector(".error").style.display = "none";
+            }
+            
+        }
+
+        searchBtn.addEventListener("click", ()=>{
+          checkweather(searchBox.value);  
+        })
+    
+        
+    </script>
+</body>
+</html>
