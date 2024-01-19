@@ -13,9 +13,11 @@ header{
     justify-content: space-between;
     align-items: center;
     height: 40px;
-    padding: 4px 20px;
     width: 98%;
-   /*background-color:#ffffff0f;
+    padding: 8px;
+    z-index: 6;
+   /*
+   background-color:#ffffff0f;
     backdrop-filter: blur(0.2rem);
     position: fixed; 
    z-index: 1000;*/
@@ -65,9 +67,17 @@ header .navegador a{
   height: 100vh;
 }
 
+.primera-caja{
+  width: 100%;
+  position: relative;
+  /*display: flex;*/
+}
 .texto{
-  width: 750px;
-  padding: 190px 0px 110px 120px;
+  width: 75%;
+  height: 462px;
+  position: absolute;
+  bottom: 23px;
+  padding: 0px 100px;
 }
 
 
@@ -82,7 +92,7 @@ header .navegador a{
 
 .inicio p{
     max-width: 550px;
-    height: 80px;
+    /*height: 80px;*/
     font-family: 'Poppins';
     font-weight: 400;
     color: #D9E2ED;
@@ -132,6 +142,8 @@ a.sabermas button {
   font-size: 28px;
   color: #4BE2B3;
   transition: 0.3s;
+  text-decoration: none;
+  margin: 3px;
 }
 
 .social-icons-home:hover{
@@ -153,6 +165,7 @@ a.sabermas button {
     display: none;
     align-items: center;
     justify-content: center;
+    z-index: 8;
 }
 .perfil.activo{
   display: flex;
@@ -359,11 +372,11 @@ input:checked + .lamp::before{
     width: 30%;
   }
 
-  .grid .item-contenido, .item-contenido-video{
+  .grid .item-contenido{
     position: relative;
   }
 
-  .grid .item img, video{
+  .grid .item img{
     width: 100%;
     cursor: pointer;
     vertical-align: top;
@@ -381,25 +394,23 @@ input:checked + .lamp::before{
     display: none;
     align-items: center;
     justify-content: center;
+    z-index: 2;
   }
 
   .overlay.activo{
     display: flex;
+    z-index: 10;
   }
-
-
-  .overlay img{
-    width: auto;
-    height: 590px;
-  }
-/*  .overlay2.activo{
+  .contenedor-img{
     display: flex;
+    width: 80%;
+    min-width: 836px;
+    position: relative;
   }
-  .overlay video{
-    width: 250px;
-    height: auto;
+  .overlay img{
+    width: 430px;
+    max-height: 580px;
   }
-  */
 
   .overlay .descripcion{  
     display: block;
@@ -422,22 +433,33 @@ input:checked + .lamp::before{
     font-size: 15px;
     text-align: left;
   }
-
-  .descripcion img{
-    width: 40px;
-    height: 40px;
-    margin: 15px;
-
-  }
-  .descripcion .herramientas{
+ .descripcion .herramientas{
     text-align: center;
+    margin-top: 25px;
   }
-  
-  .contenedor-img {
-    /*position: relative;*/
-    display: flex;
-    width: 80%;
-    position: relative;
+ .herramientas-img{
+    max-width: 42px;
+    margin: 8px;
+  }
+
+  .descripcion button{
+    width: 100px;
+    border-radius: 8px;
+    font-family: 'Poppins';
+    font-weight: 400;
+    font-size: 14px;
+    color: #D9E2ED;
+    text-decoration: none;
+    border: none;
+    background-color: #0E2F47;
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .descripcion button:hover{
+    transform: scale(1.1);
+    transition: 0.3s;
   }
 
   .overlay #btn-cerrar-popup{
@@ -479,7 +501,7 @@ input:checked + .lamp::before{
    .nota-final{
     font-family:'Poppins';
     font-weight: 400;
-    font-size: 30;
+    font-size: 18px;
     color: #ffffff;
     width: 600px;
     text-align: center;
@@ -499,10 +521,100 @@ input:checked + .lamp::before{
     color: #ffffff;
     margin: 10px 10px;
   }
-
-
-  @media screen and (max-width: 700px){
+  @media screen and (max-width: 750px){
+    header .navegador a{
+      color: #4BE2B3;
+    }
+    .texto{
+      width: 400px;
+      height: 400px;
+      padding: 0px 50px;
+  }
+  .inicio h1{
+    font-size: 60px;
+    margin-bottom: 15px;
+  }
+  .inicio p{
+    margin-bottom: 15px;
+  }
+  .contenedor-perfil{
+    font-size: 14px;
+  }
+  .contenedor-img{
+    min-width: 650px;
+  }
+  .descripcion h2{
+    font-size: 30px;
+    padding: 14px;
+  }
+  .overlay .descripcion{
+    width: 300px;
+  }
+  .overlay img{
+    width: 312px;
+  }
+  .descripcion p{
+    font-size: 12px;
+  }
     .grid .item{
-      width: 50%;
+      width: 45%;
+    }
+  }
+
+  @media screen and (max-width: 620px){
+    .ambiente{
+      width: 0%;
+    } 
+    .texto{
+      width: 445px;
+      height: 390px;
+      padding: 0px 60px;
+  }
+    .categorias a{
+      font-size: 14px;
+    }
+    .perfil.activo{  
+      overflow: scroll;
+    }
+    .perfil #boton-cerrar-popup{
+      color: #4BE2B3;
+    }
+    .contenedor-perfil{
+      display: block;
+      min-width: 346px;
+      text-align: center;
+      height: 500px;
+    }
+    .overlay.activo{
+      overflow: scroll;
+    }
+    .contenedor-img{
+      display: block;
+      min-width: 346px;
+      text-align: center;
+      height: 500px;
+    }
+    .overlay .descripcion{
+      display: inline-block;
+      height: 360px;
+    }
+    .overlay img{
+      width: 320px;
+    }
+
+    .overlay #btn-cerrar-popup{
+      color: #4BE2B3;
+    }
+   
+    .grid .item{
+      width: 90%;
+    }
+    svg{
+      position: absolute;
+      top: -175px;
+    }
+    .nota-final{
+      font-size: 14px;
+      width: 400px;
     }
   }

@@ -26,23 +26,6 @@ document.querySelector('#boton-cerrar-popup').addEventListener('click', () => {
     //lampara.classList.remove('activo');  // Elimina la clase 'activo' de la lámpara
 });
 });
-/*const perfil = document.getElementById('perfil');
-const ambiente = document.getElementById('ambiente');
-const botones = document.querySelectorAll('.inicio .intereses-y-redes button');
-const lampara = document.querySelectorAll('.ambiente .lampara');
-
-
-botones.forEach(function (boton) {
-    boton.addEventListener('click', function () {
-        perfil.classList.add('activo');
-    });
-});
-  document.querySelector('#boton-cerrar-popup').addEventListener('click',()=>{
-    perfil.classList.remove('activo');
-  });
-});*/
-
-
 /*---------------Indicador de color ----------------*/
     const enlaces = document.querySelectorAll('#categorias a');
     enlaces.forEach((elemento) => { elemento.addEventListener('click', (evento) => {
@@ -58,28 +41,17 @@ botones.forEach(function (boton) {
    
    /*-------------Visualizacion de imagenes al dar click-------------*/
    const overlay = document.getElementById('overlay');
-   document.querySelectorAll('.grid .item img') .forEach((elemento)=>{
-    elemento.addEventListener('click', ()=>{
-        const ruta= elemento.getAttribute('src');
-        const descripcion = elemento.parentNode.parentNode.dataset.descripcion;
+   document.querySelectorAll('.grid .item img').forEach((elemento)=>{
+   elemento.addEventListener('click', ()=>{ 
+    const ruta= elemento.getAttribute('src');
+    const descripcion = elemento.parentNode.parentNode.dataset.descripcion;
+   
+       overlay.classList.add('activo');
+       document.querySelector('#overlay img').src = ruta;
+       document.querySelector('#overlay .descripcion').innerHTML = descripcion;
+         });
+});
 
-        overlay.classList.add('activo');
-        document.querySelector('#overlay img').src = ruta;
-        document.querySelector('#overlay .descripcion').innerHTML = descripcion;
-        });
-   });
-    /*--------------------------- visualizacion de videos al dar click------------*/
-   const overlay2 = document.getElementById('overlay');
-   document.querySelectorAll('.grid .item video source') .forEach((elemento)=>{
-      const ruta = elemento.getAttribute('src');
-      const descripcion = elemento.parentNode.parentNode.dataset.descripcion;
-
-   elemento.addEventListener('click', ()=>{  
-         overlay2.classList.add('activo');
-         document.querySelector('#overlay video').src = ruta;
-         document.querySelector('#overlay .descripcion').innerHTML = descripcion;
-         })
-    });
 
    /*---------------- boton de cerrar la imagen------------- */
 
